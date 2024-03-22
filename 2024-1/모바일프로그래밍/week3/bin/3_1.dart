@@ -128,6 +128,17 @@ void main() {
   print(fruitsSet.elementAt(0)); // 이러한 방법으로 인덱스 기반 검색을 '굳이' 할 수 있긴하다.
   print(fruits.elementAt(0)); // 참고로 elementAt()은 리스트에서도 똑같이 사용 가능.
 
+  List abc = [1, 1, 2, 2, 3, 3];
+  print(abc);
+
+  Set newAbc = abc.toSet(); // List의 Set화 - Set화를 하는 중, 중복된 값이 있으면 전부 없애버림.
+  print(newAbc); // output : [1, 2, 3]
+
+  List qwe = newAbc.toList(); // Set의 List화
+  print(qwe); // output : [1, 2, 3]
+
+  print(abc.toSet().toList()); // List의 중복값 제거 방법.
+
   // Map {key : value} 형태로 저장.
   // key와 value의 타입은 아무거나 가능.
   // Index가 아니라 key를 사용해서 데이터에 접근. -> key값이 절대로 중복되어서는 안 된다.
@@ -146,6 +157,18 @@ void main() {
     "은평구": 03447,
     "동작구": 03984,
   };
+  print(zipcode['동작구']); // output : 6978
+  print(zipcode[
+      '관악구']); // output : null <-  없는 것을 호출하면, 에러를 표시하는 게 아니라, null만 출력한다.
+
+  zipcode['관악구'] = 08826;
+  print(zipcode['관악구']); // output : 08826
+
+  print(zipcode.keys); // map의 키만
+  print(zipcode.values); // map의 value만
+  print(zipcode.containsKey('동작구')); // Map안에 괄호 안의 키가 존재하는 지 검색 -> return Bool
+  print(zipcode
+      .containsKey(06798)); // Map안에 괄호 안의 value가 존재하는 지 검색 -> return Bool
 
   // Map의 key와 value의 데이터 타입에 컬렉션 타입(list, set, map)도 설정할 수 있다. 근데 key는 주로 String.
   Map<String, List<int>> zipcode3 = {
