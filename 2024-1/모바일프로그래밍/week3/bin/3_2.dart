@@ -81,7 +81,8 @@ void main() {
       break;
   }
 
-  // enum : main 함수 바깥에 선언해야하는 탓에, 맨 위에 있음.
+  // enum : String 타입의 하드코딩으로 인해 발생하는 오류를 쉽게 방지할 수 있게 해준다.
+  // main 함수 바깥에 선언해야하는 탓에, 맨 위에 있음.
   var status2 = Status.Authenticated;
   switch (status2) {
     case Status.Initialized:
