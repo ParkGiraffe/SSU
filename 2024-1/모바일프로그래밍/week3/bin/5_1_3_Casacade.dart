@@ -15,7 +15,7 @@ void main() {
     ..sayHello(); // 심지어 메소드를 실행할 수도 있다.
 
   print(someone);
-}
+} // 주석
 
 class Student {
   String name;
