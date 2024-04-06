@@ -4,7 +4,7 @@ void main() {
 }
 
 class Human {
-  String name;
+  final String name;
   int age;
   double height;
   String nation;
