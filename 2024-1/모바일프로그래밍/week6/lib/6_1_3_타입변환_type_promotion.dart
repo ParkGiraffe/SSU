@@ -12,6 +12,7 @@ void main() {
   // is 키워드 (타입 비교)
   print(student is Student);
   print(student is Human); // 상속해준 부모 클래스와도 동치.
+  print(student is IEaterable); // 연결된 인터페이스와도 동치.
 }
 
 // 부모 상속 먼저하고 인터페이스 연결
