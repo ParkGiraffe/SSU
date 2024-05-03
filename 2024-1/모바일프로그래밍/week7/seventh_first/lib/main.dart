@@ -133,6 +133,61 @@ class MyApp extends StatelessWidget {
                           ],
                         ),
                       ),
+
+                      // feed pictures
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            Image.asset(
+                              'assets/Feed_picture_01.png',
+                              width: MediaQuery.of(context)
+                                  .size
+                                  .width, // context는 최상위 부모 위젯에서 생성되는데, 모바일 화면의 온갖 정보를 담고 있는 객체이다.
+                            ),
+                            Image.asset(
+                              'assets/Feed_picture_02.png',
+                              width: MediaQuery.of(context).size.width,
+                            ),
+                            Image.asset(
+                              'assets/Feed_picture_03.png',
+                              width: MediaQuery.of(context).size.width,
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      // actions
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 8,
+                        ),
+                        height: 42,
+                        child: Row(
+                          children: [
+                            Image.asset(
+                              'assets/Heart.png',
+                            ),
+                            const SizedBox(
+                              width: 12,
+                            ),
+                            Image.asset(
+                              'assets/Comment.png',
+                            ),
+                            const SizedBox(
+                              width: 12,
+                            ),
+                            Image.asset(
+                              'assets/Share.png',
+                            ),
+                            const Spacer(),
+                            Image.asset(
+                              'assets/Bookmark.png',
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ],
