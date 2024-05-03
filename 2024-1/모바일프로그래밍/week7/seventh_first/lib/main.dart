@@ -60,7 +60,7 @@ class MyApp extends StatelessWidget {
             Expanded(
               child: Column(
                 children: [
-                  //userList
+                  //user list
                   Container(
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     height: 108,
@@ -104,6 +104,36 @@ class MyApp extends StatelessWidget {
                         ],
                       ),
                     ),
+                  ),
+
+                  // feeds
+                  Column(
+                    children: [
+                      // user info
+                      Container(
+                        padding: const EdgeInsets.all(10),
+                        height: 52,
+                        child: Row(
+                          children: [
+                            Image.asset('assets/Profile_picture_02.png'),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            const Text(
+                              'flutter_framework',
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const Spacer(),
+                            const Icon(
+                              Icons.more_horiz,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
