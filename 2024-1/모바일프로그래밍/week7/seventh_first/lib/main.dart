@@ -58,139 +58,217 @@ class MyApp extends StatelessWidget {
             ),
             // body
             Expanded(
-              child: Column(
-                children: [
-                  //user list
-                  Container(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    height: 108,
-                    decoration: const BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                          color: Colors.grey,
-                          width: 0.5,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Column(
+                  // crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    //user list
+                    Container(
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      height: 108,
+                      decoration: const BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(
+                            color: Colors.grey,
+                            width: 0.5,
+                          ),
                         ),
                       ),
-                    ),
-                    child: const SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: [
-                          // user
-                          User(
-                            userName: 'flutter_framework',
-                            profilePicture: 'assets/Profile_picture_02.png',
-                          ),
-                          User(
-                            userName: 'awesome_application',
-                            profilePicture: 'assets/Profile_picture_06.png',
-                          ),
-                          User(
-                            userName: 'flutter_framework',
-                            profilePicture: 'assets/Profile_picture_02.png',
-                          ),
-                          User(
-                            userName: 'awesome_application',
-                            profilePicture: 'assets/Profile_picture_06.png',
-                          ),
-                          User(
-                            userName: 'flutter_framework',
-                            profilePicture: 'assets/Profile_picture_02.png',
-                          ),
-                          User(
-                            userName: 'awesome_application',
-                            profilePicture: 'assets/Profile_picture_06.png',
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-
-                  // feeds
-                  Column(
-                    children: [
-                      // user info
-                      Container(
-                        padding: const EdgeInsets.all(10),
-                        height: 52,
-                        child: Row(
-                          children: [
-                            Image.asset('assets/Profile_picture_02.png'),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            const Text(
-                              'flutter_framework',
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const Spacer(),
-                            const Icon(
-                              Icons.more_horiz,
-                            ),
-                          ],
-                        ),
-                      ),
-
-                      // feed pictures
-                      SingleChildScrollView(
+                      child: const SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: Row(
                           children: [
-                            Image.asset(
-                              'assets/Feed_picture_01.png',
-                              width: MediaQuery.of(context)
-                                  .size
-                                  .width, // context는 최상위 부모 위젯에서 생성되는데, 모바일 화면의 온갖 정보를 담고 있는 객체이다.
+                            // user
+                            User(
+                              userName: 'flutter_framework',
+                              profilePicture: 'assets/Profile_picture_02.png',
                             ),
-                            Image.asset(
-                              'assets/Feed_picture_02.png',
-                              width: MediaQuery.of(context).size.width,
+                            User(
+                              userName: 'awesome_application',
+                              profilePicture: 'assets/Profile_picture_06.png',
                             ),
-                            Image.asset(
-                              'assets/Feed_picture_03.png',
-                              width: MediaQuery.of(context).size.width,
+                            User(
+                              userName: 'flutter_framework',
+                              profilePicture: 'assets/Profile_picture_02.png',
+                            ),
+                            User(
+                              userName: 'awesome_application',
+                              profilePicture: 'assets/Profile_picture_06.png',
+                            ),
+                            User(
+                              userName: 'flutter_framework',
+                              profilePicture: 'assets/Profile_picture_02.png',
+                            ),
+                            User(
+                              userName: 'awesome_application',
+                              profilePicture: 'assets/Profile_picture_06.png',
                             ),
                           ],
                         ),
                       ),
+                    ),
 
-                      // actions
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 12,
-                          vertical: 8,
+                    // feeds
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // user info
+                        Container(
+                          padding: const EdgeInsets.all(10),
+                          height: 52,
+                          child: Row(
+                            children: [
+                              Image.asset('assets/Profile_picture_02.png'),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              const Text(
+                                'flutter_framework',
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const Spacer(),
+                              const Icon(
+                                Icons.more_horiz,
+                              ),
+                            ],
+                          ),
                         ),
-                        height: 42,
-                        child: Row(
-                          children: [
-                            Image.asset(
-                              'assets/Heart.png',
-                            ),
-                            const SizedBox(
-                              width: 12,
-                            ),
-                            Image.asset(
-                              'assets/Comment.png',
-                            ),
-                            const SizedBox(
-                              width: 12,
-                            ),
-                            Image.asset(
-                              'assets/Share.png',
-                            ),
-                            const Spacer(),
-                            Image.asset(
-                              'assets/Bookmark.png',
-                            ),
-                          ],
+
+                        // feed pictures
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: [
+                              Image.asset(
+                                'assets/Feed_picture_01.png',
+                                width: MediaQuery.of(context)
+                                    .size
+                                    .width, // context는 최상위 부모 위젯에서 생성되는데, 모바일 화면의 온갖 정보를 담고 있는 객체이다.
+                              ),
+                              Image.asset(
+                                'assets/Feed_picture_02.png',
+                                width: MediaQuery.of(context).size.width,
+                              ),
+                              Image.asset(
+                                'assets/Feed_picture_03.png',
+                                width: MediaQuery.of(context).size.width,
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+
+                        // actions
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 8,
+                          ),
+                          height: 42,
+                          child: Row(
+                            children: [
+                              Image.asset(
+                                'assets/Heart.png',
+                              ),
+                              const SizedBox(
+                                width: 12,
+                              ),
+                              Image.asset(
+                                'assets/Comment.png',
+                              ),
+                              const SizedBox(
+                                width: 12,
+                              ),
+                              Image.asset(
+                                'assets/Share.png',
+                              ),
+                              const Spacer(),
+                              Image.asset(
+                                'assets/Bookmark.png',
+                              ),
+                            ],
+                          ),
+                        ),
+
+                        // Details
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 15),
+                          child: const Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text.rich(
+                                TextSpan(
+                                  style: TextStyle(fontSize: 12),
+                                  children: [
+                                    TextSpan(
+                                      text: 'awesome application',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    TextSpan(text: '님 외'),
+                                    TextSpan(
+                                      text: '10명',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    TextSpan(text: '이 좋아합니다.'),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: 8,
+                              ),
+                              Text.rich(
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                TextSpan(
+                                  style: TextStyle(fontSize: 12),
+                                  children: [
+                                    TextSpan(
+                                      text: 'flutter_framework',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    TextSpan(
+                                        text:
+                                            'Ipsum Lorem is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Text(
+                                '댓글 102개 모두 보기',
+                                style: TextStyle(
+                                  color: Colors.black54,
+                                  fontSize: 12,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Text(
+                                '1일 전',
+                                style: TextStyle(
+                                  color: Colors.black54,
+                                  fontSize: 10,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 16,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
             // bottom
