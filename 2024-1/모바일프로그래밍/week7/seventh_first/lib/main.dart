@@ -17,45 +17,8 @@ class MyApp extends StatelessWidget {
               height: 44,
             ),
             // top
-            Container(
-              height: 50,
-              padding: const EdgeInsets.fromLTRB(10, 6, 15, 0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  // logo
-                  Image.asset("assets/Instagram_logo.png"),
+            const Top(),
 
-                  // icons
-                  Row(
-                    children: [
-                      Image.asset(
-                        "assets/Add.png",
-                        width: 26,
-                        height: 26,
-                      ),
-                      const SizedBox(
-                        width: 18,
-                      ),
-                      Image.asset(
-                        "assets/Heart.png",
-                        width: 26,
-                        height: 26,
-                      ),
-                      const SizedBox(
-                        width: 18,
-                      ),
-                      Image.asset(
-                        "assets/Share.png",
-                        width: 26,
-                        height: 26,
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            ),
             // body
             Expanded(
               child: SingleChildScrollView(
@@ -272,33 +235,89 @@ class MyApp extends StatelessWidget {
               ),
             ),
             // bottom
-            Container(
-              height: 50,
-              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    "assets/Home.png",
-                  ),
-                  Image.asset(
-                    "assets/Search.png",
-                  ),
-                  Image.asset(
-                    "assets/Reels.png",
-                  ),
-                  Image.asset(
-                    "assets/Shop.png",
-                  ),
-                  Image.asset(
-                    "assets/Profile_picture_01.png",
-                  ),
-                ],
-              ),
-            ),
+            const Bottom()
           ],
         ),
+      ),
+    );
+  }
+}
+
+class Bottom extends StatelessWidget {
+  const Bottom({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 50,
+      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 30),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Image.asset(
+            "assets/Home.png",
+          ),
+          Image.asset(
+            "assets/Search.png",
+          ),
+          Image.asset(
+            "assets/Reels.png",
+          ),
+          Image.asset(
+            "assets/Shop.png",
+          ),
+          Image.asset(
+            "assets/Profile_picture_01.png",
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class Top extends StatelessWidget {
+  const Top({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 50,
+      padding: const EdgeInsets.fromLTRB(10, 6, 15, 0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          // logo
+          Image.asset("assets/Instagram_logo.png"),
+
+          // icons
+          Row(
+            children: [
+              Image.asset(
+                "assets/Add.png",
+                width: 26,
+                height: 26,
+              ),
+              const SizedBox(
+                width: 18,
+              ),
+              Image.asset(
+                "assets/Heart.png",
+                width: 26,
+                height: 26,
+              ),
+              const SizedBox(
+                width: 18,
+              ),
+              Image.asset(
+                "assets/Share.png",
+                width: 26,
+                height: 26,
+              ),
+            ],
+          )
+        ],
       ),
     );
   }
@@ -313,57 +332,92 @@ class User extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool isFirst =
+        context.findAncestorWidgetOfExactType<Row>()?.children[0] ==
+            this; // 내 부모인 row에서 자식들이 있는데, 그 중 첫 번째가 바로 나인가?
+
+    const instaGradient = LinearGradient(
+      begin: Alignment.bottomLeft, // 그라디언트 시작지점
+      end: Alignment.topRight, // 그라디언트 종료점
+      stops: [0.2, 0.4, 0.6, 0.8, 1], // 그라디언트 중지점
+      colors: [
+        Color(0xFFFFD600),
+        Color(0xFFFF7A00),
+        Color(0xFFFF0069),
+        Color(0xFFD300C5),
+        Color(0xFF7638FA),
+      ], // 중지점에서의 컬러
+    );
+
+    Widget addBadge = Positioned(
+      right: 2,
+      bottom: 2,
+      child: Container(
+        width: 21,
+        height: 21,
+        decoration: BoxDecoration(
+          color: Colors.blue,
+          shape: BoxShape.circle,
+          border: Border.all(
+            color: Colors.white,
+            width: 2.5,
+            strokeAlign: BorderSide.strokeAlignCenter,
+          ),
+        ),
+        child: const Icon(
+          Icons.add_rounded,
+          color: Colors.white,
+          size: 13,
+          weight: 100,
+        ),
+      ),
+    );
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 6),
-      child: Column(
+      child: Stack(
         children: [
-          Container(
-            width: 71,
-            height: 71,
-            padding: const EdgeInsets.all(2.5),
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: LinearGradient(
-                begin: Alignment.bottomLeft, // 그라디언트 시작지점
-                end: Alignment.topRight, // 그라디언트 종료점
-                stops: [0.2, 0.4, 0.6, 0.8, 1], // 그라디언트 중지점
-                colors: [
-                  Color(0xFFFFD600),
-                  Color(0xFFFF7A00),
-                  Color(0xFFFF0069),
-                  Color(0xFFD300C5),
-                  Color(0xFF7638FA),
-                ], // 중지점에서의 컬러
-              ),
-            ),
-            child: Container(
-              padding: const EdgeInsets.all(2.5),
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                shape: BoxShape.circle,
-              ),
-              child: Container(
+          Column(
+            children: [
+              Container(
+                width: 71,
+                height: 71,
+                padding: const EdgeInsets.all(2.5),
                 decoration: BoxDecoration(
-                  color: Colors.grey,
                   shape: BoxShape.circle,
-                  image: DecorationImage(
-                    image: AssetImage(profilePicture),
+                  gradient: isFirst ? null : instaGradient,
+                ),
+                child: Container(
+                  padding: const EdgeInsets.all(2.5),
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.grey,
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: AssetImage(profilePicture),
+                      ),
+                    ),
                   ),
                 ),
               ),
-            ),
-          ),
-          SizedBox(
-            width: 71,
-            child: Text(
-              userName,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 11,
-                overflow: TextOverflow.ellipsis,
+              SizedBox(
+                width: 71,
+                child: Text(
+                  isFirst ? '내 스토리' : userName,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 11,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
               ),
-            ),
+            ],
           ),
+          isFirst ? addBadge : const SizedBox.shrink(),
         ],
       ),
     );
