@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Pretendard',
       ),
-      home: const HomeScreen(),
+      home: HomeScreen(),
     );
   }
 }
