@@ -37,6 +37,16 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  // 할 일의 이름을 변경하는 팝업 띄우기
+  void _showModifyPopup(Todo todo) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return const Text('할 일 수정');
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -99,6 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         todo: todoList[index - 1],
                         onCheckedTodo: _handleCheckTodoItem,
                         onDeleteTodo: _deleteTodoItem,
+                        onModifyTodo: _showModifyPopup,
                       );
                     }
                   },
