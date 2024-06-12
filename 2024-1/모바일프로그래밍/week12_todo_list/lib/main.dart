@@ -1,9 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:week12_todo_list/constants/todo_colors.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:week12_todo_list/models/todo_model.dart';
 import 'package:week12_todo_list/screens/home_screen.dart';
 
-void main() {
+void main() async {
+  // main 코드를 새로 작성하는 거기 때문에, 처음부터 다시 빌드를 해야 작동확인 가능
+  await Hive.initFlutter();
+  Hive.registerAdapter(
+      TodoAdapter()); // Todo model의 클래스에 hive를 생성하면, 자동으로 클래스 이름 뒤에 Adapter를 붙여서 클래스 모델을 하이브 내부에 생성한다. - 원시타입의 데이터만 저장할 경우에는 필요하지 않은 코드.
+
+  await Hive.openBox<Todo>('todoList');
+  // <> 안에는 Adapter와 연결된 데이터 타입만 넣기.
+  // ('') : Box의 이름. 여러 개의 Box를 생성할 경우, 이를 구분해주는 역할.
+
+  var box = Hive.box<Todo>('todoList'); // 생성한 Box 참조
+  box.add(
+    Todo(
+      id: DateTime.now().toString(),
+      todoContent: 'Hive 연습하기',
+    ),
+  ); // add 메소드를 사용하여 todo 추가하기
+
+  box.toMap().forEach((key, value) {
+    print(
+      '[key] $key, [value] id: ${value.id} | todoContent: ${value.todoContent} | isDone: ${value.isDone}',
+    );
+  }); // box에 저장된 데이터(key-value) 출력하기, Map 타입은 for in 구문 사용 X
+
   runApp(const MyApp());
 }
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:week12_todo_list/constants/todo_colors.dart';
 import 'package:week12_todo_list/models/todo_model.dart';
+import 'package:week12_todo_list/screens/todo_modify_dialog.dart';
 import 'package:week12_todo_list/todo_item.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -12,7 +13,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Todo> todoList = Todo.createDummyTodoList();
+  List<Todo> todoList = [];
 
   void _handleCheckTodoItem(Todo todo) {
     setState(() {
@@ -42,9 +43,19 @@ class _HomeScreenState extends State<HomeScreen> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return const Text('할 일 수정');
+        return TodoModifyDialog(
+          todo: todo,
+          onModifiedTodo: _modifyTodoItem,
+        );
       },
     );
+  }
+
+  void _modifyTodoItem(String modifiedTodoContent, Todo todo) {
+    setState(() {
+      todo.todoContent = modifiedTodoContent;
+    });
+    Navigator.pop(context);
   }
 
   @override
