@@ -13,19 +13,29 @@ void main() async {
   // <> 안에는 Adapter와 연결된 데이터 타입만 넣기.
   // ('') : Box의 이름. 여러 개의 Box를 생성할 경우, 이를 구분해주는 역할.
 
-  var box = Hive.box<Todo>('todoList'); // 생성한 Box 참조
-  box.add(
-    Todo(
-      id: DateTime.now().toString(),
-      todoContent: 'Hive 연습하기',
-    ),
-  ); // add 메소드를 사용하여 todo 추가하기
+  // var box = Hive.box<Todo>('todoList'); // 생성한 Box 참조
+  // box.add(
+  //   Todo(
+  //     id: DateTime.now().toString(),
+  //     todoContent: '로컬 DB',
+  //   ),
+  // ); // add 메소드를 사용하여 todo 추가하기
 
-  box.toMap().forEach((key, value) {
-    print(
-      '[key] $key, [value] id: ${value.id} | todoContent: ${value.todoContent} | isDone: ${value.isDone}',
-    );
-  }); // box에 저장된 데이터(key-value) 출력하기, Map 타입은 for in 구문 사용 X
+  // box.put(
+  //   DateTime.now().toString(),
+  //   Todo(
+  //     id: DateTime.now().toString(),
+  //     todoContent: 'Hive 연습하기',
+  //   ),
+  // ); // put 메소드를 사용하여 todo 추가하기 - put(키 - 직접 지정 가능, 값)
+
+  // box.delete(0);
+
+  // box.toMap().forEach((key, value) {
+  //   print(
+  //     '[key] $key, [value] id: ${value.id} | todoContent: ${value.todoContent} | isDone: ${value.isDone}',
+  //   );
+  // }); // box에 저장된 데이터(key-value) 출력하기, Map 타입은 for in 구문 사용 X
 
   runApp(const MyApp());
 }

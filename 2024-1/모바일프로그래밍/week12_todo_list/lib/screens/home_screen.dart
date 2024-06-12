@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hive/hive.dart';
 import 'package:week12_todo_list/constants/todo_colors.dart';
 import 'package:week12_todo_list/models/todo_model.dart';
 import 'package:week12_todo_list/screens/todo_modify_dialog.dart';
@@ -13,12 +14,36 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Todo> todoList = [];
+  // List<Todo> todoList = [];
+  var todoList = Hive.box<Todo>('todoList');
+  Iterable<Todo> _searchedTodoItems = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _searchedTodoItems = todoList.values;
+  }
 
   void _handleCheckTodoItem(Todo todo) {
     setState(() {
       todo.isDone = !todo.isDone;
+      todoList.put(todo.id, todo); // 내부 데이터를 수정할 때는 put 메소드를 활용하기.
     });
+  }
+
+  void _addTodoItem(String todoContent) {
+    if (todoContent.trim().isNotEmpty) {
+      String createdAt = DateTime.now().toString();
+      setState(() {
+        todoList.put(
+            createdAt,
+            Todo(
+              id: createdAt, // Todo의 id와 hive 데이터의 id를 동일하게 가져가면, 나중에 추가와 지우기를 할 때 아주 편함.
+              todoContent: todoContent,
+            ));
+      });
+      // _TodoAddBoxController.clear();
+    }
   }
 
   void _deleteTodoItem(String id) {
@@ -34,8 +59,23 @@ class _HomeScreenState extends State<HomeScreen> {
       */
 
       // 2. List 타입에서 제공하는 removeWhere method
-      todoList.removeWhere((element) => element.id == id);
+      // todoList.removeWhere((element) => element.id == id);
+
+      todoList.delete(id);
     });
+
+    void _filtrateTodoList(String keyword) {
+      Iterable<Todo> results = [];
+      if (keyword.isEmpty) {
+        results = todoList.values;
+      } else {
+        results = todoList.values.where((item) =>
+            item.todoContent.toLowerCase().contains(keyword.toLowerCase()));
+      }
+      setState(() {
+        _searchedTodoItems = results;
+      });
+    }
   }
 
   // 할 일의 이름을 변경하는 팝업 띄우기
@@ -54,6 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void _modifyTodoItem(String modifiedTodoContent, Todo todo) {
     setState(() {
       todo.todoContent = modifiedTodoContent;
+      todoList.put(todo.id, todo);
     });
     Navigator.pop(context);
   }
@@ -117,7 +158,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       );
                     } else {
                       return TodoItem(
-                        todo: todoList[index - 1],
+                        todo: _searchedTodoItems
+                            .elementAt(_searchedTodoItems.length - index),
                         onCheckedTodo: _handleCheckTodoItem,
                         onDeleteTodo: _deleteTodoItem,
                         onModifyTodo: _showModifyPopup,
