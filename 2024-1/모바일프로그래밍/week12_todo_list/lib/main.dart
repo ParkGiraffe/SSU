@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:week12_todo_list/models/todo_model.dart';
-import 'package:week12_todo_list/screens/home_screen.dart';
+import 'models/todo_model.dart';
+import 'screens/home_screen.dart';
 
 void main() async {
   // main 코드를 새로 작성하는 거기 때문에, 처음부터 다시 빌드를 해야 작동확인 가능
@@ -51,6 +52,9 @@ class MyApp extends StatelessWidget {
     //     systemNavigationBarColor: TodoColors.background,
     //   ),
     // );
+
+    SystemChrome.setEnabledSystemUIMode(
+        SystemUiMode.edgeToEdge); // 안드로이드 내비게이션 바를 무시하고 전체를 전부 사용하겠다는 의미.
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,

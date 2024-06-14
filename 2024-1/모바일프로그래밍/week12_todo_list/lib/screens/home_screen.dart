@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
-import 'package:week12_todo_list/constants/todo_colors.dart';
-import 'package:week12_todo_list/models/todo_model.dart';
-import 'package:week12_todo_list/screens/todo_modify_dialog.dart';
-import 'package:week12_todo_list/todo_item.dart';
+import 'package:week12_todo_list/componets/drawer_menu_button.dart';
+import 'package:week12_todo_list/screens/drawer_screen.dart';
+import '../constants/todo_colors.dart';
+import '../models/todo_model.dart';
+import 'todo_modify_dialog.dart';
+import '../componets/todo_item.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -103,13 +105,15 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: TodoColors.background,
+      drawer: const DrawerScreen(),
       appBar: AppBar(
         systemOverlayStyle: const SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
           systemNavigationBarColor: TodoColors.background,
+          statusBarBrightness: Brightness.dark,
         ),
         backgroundColor: TodoColors.background,
-        leading: const Icon(Icons.menu),
+        leading: DrawerMenuButton(),
         title: const Text(
           'Todo App',
           style: TextStyle(
